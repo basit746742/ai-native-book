@@ -1,0 +1,69 @@
+/**
+ * Copyright (c) 2017-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Custom styles for ROS 2 educational content */
+.ros2-topic {
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196f3;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.ros2-service {
+  background-color: #e8f5e9;
+  border-left: 4px solid #4caf50;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.ros2-node {
+  background-color: #fff3e0;
+  border-left: 4px solid #ff9800;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.conceptual-example {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+.exercise-box {
+  background-color: #fff8e1;
+  border: 2px dashed #ffc107;
+  border-radius: 4px;
+  padding: 15px;
+  margin: 15px 0;
+}

@@ -1,0 +1,149 @@
+# API Contract: ROS 2 Educational Content Interaction
+
+**Feature**: 1-ros2-robotics-nervous-system
+**Date**: 2025-12-28
+
+## Overview
+API contract for potential interactive features in the ROS 2 educational content. These endpoints would support interactive examples and learning assessments within the Docusaurus-based educational module.
+
+## Endpoints
+
+### GET /api/v1/code-examples/{module}/{example_id}
+**Description**: Retrieve a specific code example for a ROS 2 module
+**Purpose**: Provide code examples that students can study and reference
+
+#### Request
+```
+GET /api/v1/code-examples/{module}/{example_id}
+```
+
+#### Path Parameters
+- `module`: The module identifier (e.g., "ros2-basics", "ai-control", "urdf-modeling")
+- `example_id`: The specific example identifier
+
+#### Response (200 OK)
+```json
+{
+  "id": "string",
+  "module": "string",
+  "title": "string",
+  "description": "string",
+  "code": "string",
+  "language": "string",
+  "explanation": "string",
+  "related_concepts": ["string"],
+  "difficulty": "beginner|intermediate|advanced"
+}
+```
+
+### POST /api/v1/assessments/{module}/submit
+**Description**: Submit answers to assessment questions for a module
+**Purpose**: Allow students to validate their understanding of the material
+
+#### Request
+```
+POST /api/v1/assessments/{module}/submit
+Content-Type: application/json
+```
+
+#### Path Parameters
+- `module`: The module identifier (e.g., "ros2-basics", "ai-control", "urdf-modeling")
+
+#### Request Body
+```json
+{
+  "student_id": "string",
+  "answers": [
+    {
+      "question_id": "string",
+      "answer": "string"
+    }
+  ]
+}
+```
+
+#### Response (200 OK)
+```json
+{
+  "assessment_id": "string",
+  "module": "string",
+  "score": "float",
+  "max_score": "float",
+  "feedback": [
+    {
+      "question_id": "string",
+      "is_correct": "boolean",
+      "explanation": "string"
+    }
+  ]
+}
+```
+
+### GET /api/v1/modules/{module}/progress
+**Description**: Get progress information for a specific module
+**Purpose**: Track student progress through the educational content
+
+#### Request
+```
+GET /api/v1/modules/{module}/progress
+```
+
+#### Path Parameters
+- `module`: The module identifier
+
+#### Response (200 OK)
+```json
+{
+  "module": "string",
+  "student_id": "string",
+  "completed_sections": ["string"],
+  "total_sections": "integer",
+  "completed_examples": "integer",
+  "total_examples": "integer",
+  "assessment_scores": [
+    {
+      "assessment_id": "string",
+      "score": "float",
+      "date_completed": "string"
+    }
+  ]
+}
+```
+
+## Error Responses
+
+### 400 Bad Request
+```json
+{
+  "error": "bad_request",
+  "message": "string",
+  "details": "string"
+}
+```
+
+### 404 Not Found
+```json
+{
+  "error": "not_found",
+  "message": "Requested resource not found"
+}
+```
+
+### 500 Internal Server Error
+```json
+{
+  "error": "internal_server_error",
+  "message": "An unexpected error occurred"
+}
+```
+
+## Authentication
+All endpoints require authentication via API key in the header:
+```
+Authorization: Bearer {api_key}
+```
+
+## Rate Limiting
+All endpoints are subject to rate limiting:
+- 100 requests per minute per IP address
+- 429 response code when limit is exceeded
